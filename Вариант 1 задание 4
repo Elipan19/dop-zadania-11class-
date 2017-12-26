@@ -1,0 +1,32 @@
+void taxist(int turn_node, int final_node,vector<vector<int» wes, vector<vector<int»&G, vector<int> paths, vector <int> path) 
+{ 
+ bool unused = true; 
+ for (int temp : path){ 
+  if (turn_node == temp)
+{
+   unused = false; 
+  } 
+ } 
+ 
+ if(unused){ 
+  path.push_back(turn_node);
+ 
+  if (turn_node == final_node) 
+  { 
+   int k = 0; 
+   for (int i = 1; i < path.size(); i++){ 
+    k += wes[i][i - 1]; 
+   } 
+   paths.push_back(k); 
+   return; 
+  } 
+ 
+  if (G[turn_node].empty()) 
+   return;
+  for (auto subnode : G[turn_node]) 
+  { 
+   taxist(subnode, final_node, wes, G, paths, path); 
+  } 
+  return; 
+ } 
+}
