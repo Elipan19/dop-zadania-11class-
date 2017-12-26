@@ -1,0 +1,41 @@
+void minpath(int turn_node, int final_node, vector<vector<int»&G, vector<int> &paths, vector <int> path) 
+{ 
+ bool unused = true; 
+ for (int temp : path){ 
+  if (turn_node == temp){ 
+   unused = false; 
+  } 
+ } 
+ 
+ if(unused){ 
+  path.push_back(turn_node); 
+ 
+  if (turn_node == final_node) 
+  { 
+   paths.push_back(path.size()); 
+   return; 
+  } 
+ 
+  if (G[turn_node].empty()) 
+   return; 
+ 
+  for (auto subnode : G[turn_node]) 
+  { 
+   minpath(subnode, final_node, G, paths, path); 
+  } 
+  return; 
+ } 
+} 
+ 
+int funk(vector<vector<int»&G, int start_node, int final_node){ 
+ vector<int> paths; 
+ vector<int> path; 
+ minpath(start_node, final_node, G, paths, path); 
+ int min = INT_MAX; 
+ if (paths.size() == 0) min = 0; 
+ else 
+ for (int temp : paths){ 
+  if (temp < min) min = temp; 
+ } 
+ return min; 
+}
